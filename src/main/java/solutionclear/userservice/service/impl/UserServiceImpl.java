@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import solutionclear.userservice.dto.UpdateUserDto;
 import solutionclear.userservice.dto.UserCreateRequestDto;
 import solutionclear.userservice.exception.NotValidAgeException;
+import solutionclear.userservice.exception.RegistrationException;
 import solutionclear.userservice.mapper.UserMapper;
 import solutionclear.userservice.model.User;
 import solutionclear.userservice.repository.UserRepository;
@@ -25,6 +26,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public User createUser(UserCreateRequestDto requestDto) {
         checkAge(requestDto.birthDate());
+        if (userRepository.findByEmail(requestDto.email()).isPresent()) {
+            throw new RegistrationException("This email already registered");
+        }
         return userRepository.save(userMapper.toUserModel(requestDto));
     }
 

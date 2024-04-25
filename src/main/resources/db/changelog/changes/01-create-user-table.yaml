@@ -35,6 +35,12 @@ databaseChangeLog:
                     nullable: false
                     unique: true
               - column:
+                  name: address
+                  type: varchar(255)
+              - column:
+                  name: phone_number
+                  type: varchar(255)
+              - column:
                   name: deleted
                   type: boolean
                   value: 0
