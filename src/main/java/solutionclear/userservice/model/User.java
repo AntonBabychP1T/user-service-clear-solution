@@ -8,9 +8,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
 import lombok.Data;
+import org.hibernate.annotations.SoftDelete;
 
 @Data
 @Entity
+@SoftDelete
 @Table(name = "users")
 public class User {
     @Id
