@@ -16,7 +16,7 @@ services:
     depends_on:
       - postgresqldb
     restart: on-failure
-    image: bookstore-ims
+    image: user-service
     build: .
     env_file: ./.env
     ports:
