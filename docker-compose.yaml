@@ -30,6 +30,7 @@ services:
         "spring.datasource.driver-class-name": "org.postgresql.Driver",
         "spring.jpa.hibernate.ddl-aut": "validate",
         "spring.jpa.show-sql": "true",
-        "server.servlet.context-path": "/api"
+        "server.servlet.context-path": "/api",
+        "min.age": "${MIN_AGE}"
         }'
       JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
