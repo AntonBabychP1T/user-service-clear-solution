@@ -30,7 +30,7 @@ public class UserServiceImplTest {
     private static final String VALID_FIRST_NAME = "John";
     private static final String VALID_LAST_NAME = "Doe";
     private static final LocalDate VALID_BIRTH_DATE = LocalDate.of(2003, 9, 13);
-    private static final LocalDate INVALID_BIRTH_DATE = LocalDate.now().minusYears(minAge - 1);;
+    private static final LocalDate INVALID_BIRTH_DATE = LocalDate.now().minusYears(minAge - 1);
     public static final String VALID_EMAIL = "john@doe.com";
     public static final String VALID_ADDRESS = "Kyiv 123";
     public static final String VALID_PHONE = "123456789";
@@ -43,51 +43,6 @@ public class UserServiceImplTest {
     private UserRepository userRepository;
     @Mock
     private UserMapper userMapper;
-
-    private UserCreateRequestDto createValidRequestDto() {
-        return new UserCreateRequestDto(
-                VALID_LAST_NAME,
-                VALID_LAST_NAME,
-                VALID_BIRTH_DATE,
-                VALID_EMAIL,
-                VALID_ADDRESS,
-                VALID_PHONE
-        );
-    }
-
-  private UserCreateRequestDto createInvalidRequestDto() {
-        return new UserCreateRequestDto(
-                VALID_LAST_NAME,
-                VALID_LAST_NAME,
-                INVALID_BIRTH_DATE,
-                VALID_EMAIL,
-                VALID_ADDRESS,
-                VALID_PHONE
-        );
-    }
-
-    private User createUser() {
-        User user = new User();
-        user.setFirstName(VALID_FIRST_NAME);
-        user.setLastName(VALID_LAST_NAME);
-        user.setBirthDate(VALID_BIRTH_DATE);
-        user.setEmail(VALID_EMAIL);
-        user.setAddress(VALID_ADDRESS);
-        user.setPhoneNumber(VALID_PHONE);
-        user.setId(VALID_ID);
-        return user;
-    }
-
-    private UpdateUserDto updateUserDto() {
-        UpdateUserDto updateUserDto = new UpdateUserDto();
-        updateUserDto.setFirstName(VALID_FIRST_NAME);
-        updateUserDto.setLastName(VALID_LAST_NAME);
-        updateUserDto.setBirthDate(VALID_BIRTH_DATE);
-        updateUserDto.setEmail(VALID_EMAIL);
-        updateUserDto.setAddress(VALID_ADDRESS);
-        updateUserDto.setPhoneNumber(VALID_PHONE);
-        return updateUserDto;
-    }
 
     @Test
     @DisplayName("Verify createUser() method works")
@@ -199,6 +154,7 @@ public class UserServiceImplTest {
         assertNotNull(actual);
         assertEquals(expectedUser, actual);
     }
+
     @Test
     @DisplayName("Verify findUserById() retrieves a user successfully")
     public void findUserById_NotValidId_EntityNotFoundException() {
@@ -238,5 +194,39 @@ public class UserServiceImplTest {
 
         // Act & Assert
         assertThrows(IllegalArgumentException.class, () -> userService.findUsersByBirthDateRange(from, to));
+    }
+
+    private UserCreateRequestDto createValidRequestDto() {
+        return new UserCreateRequestDto(
+                VALID_FIRST_NAME,
+                VALID_LAST_NAME,
+                VALID_BIRTH_DATE,
+                VALID_EMAIL,
+                VALID_ADDRESS,
+                VALID_PHONE
+        );
+    }
+
+    private User createUser() {
+        User user = new User();
+        user.setFirstName(VALID_FIRST_NAME);
+        user.setLastName(VALID_LAST_NAME);
+        user.setBirthDate(VALID_BIRTH_DATE);
+        user.setEmail(VALID_EMAIL);
+        user.setAddress(VALID_ADDRESS);
+        user.setPhoneNumber(VALID_PHONE);
+        user.setId(VALID_ID);
+        return user;
+    }
+
+    private UpdateUserDto updateUserDto() {
+        UpdateUserDto updateUserDto = new UpdateUserDto();
+        updateUserDto.setFirstName(VALID_FIRST_NAME);
+        updateUserDto.setLastName(VALID_LAST_NAME);
+        updateUserDto.setBirthDate(VALID_BIRTH_DATE);
+        updateUserDto.setEmail(VALID_EMAIL);
+        updateUserDto.setAddress(VALID_ADDRESS);
+        updateUserDto.setPhoneNumber(VALID_PHONE);
+        return updateUserDto;
     }
 }
